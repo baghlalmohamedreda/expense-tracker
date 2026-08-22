@@ -2,7 +2,8 @@ import Header from "../components/Header"
 function dashboard() {
   return (
     <section>
-        <Header/>
+     
+        
     </section>
   )
 }

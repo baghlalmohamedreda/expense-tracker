@@ -4,10 +4,12 @@ import Dashboard from "./pages/dashboard";
 import Transactions from "./pages/Transactions";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
+    <Header/>
      <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/transactions" element={<Transactions />} />
