@@ -1,27 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-
-export default function Home() {
+import React from 'react'
+import Header from './_components/Header'
+import Head from 'next/head'
+function page() {
   return (
-    <Card className="max-w-sm">
-      <CardHeader>
-        <CardTitle>Project Overview</CardTitle>
-        <CardDescription>
-          Track progress and recent activity for your Next.js app.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        Your design system is ready. Start building your next component.
-      </CardContent>
-       <div className="flex min-h-svh items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-    </Card>
+    <Header />
   )
 }
+
+export default page
