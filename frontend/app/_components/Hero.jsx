@@ -38,10 +38,10 @@ function Hero() {
 
           <div className="flex justify-center">
             <Image 
-              src="/dashboard.webp"
+              src="/dashboard.svg"
               alt="dashboard"
               width={450}
-              height={750}
+              height={550}
               priority
               className="rounded-xl  object-cover"
             />
