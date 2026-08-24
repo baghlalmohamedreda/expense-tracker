@@ -46,7 +46,7 @@ function LoginForm() {
                 e.password.trim()===password.trim())
 
             if(exist){
-                router.push("/Dashboard")
+                router.push("/dashboard")
             }
             else{
                 setErr("utilisateur n'exist pas")

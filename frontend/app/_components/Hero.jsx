@@ -1,7 +1,9 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
-
+import { useRouter } from 'next/navigation'
 function Hero() {
+  const router=useRouter()
   return (
     <section className="bg-white pt-24 lg:pt-32 pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -18,7 +20,7 @@ function Hero() {
             </p>
 
             <div className="mt-6 flex gap-4">
-              <a
+              <a onClick={()=>router.push('/login')}
                 className="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
                 href="#"
               >
