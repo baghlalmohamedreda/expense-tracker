@@ -6,8 +6,6 @@ function Hero() {
     <section className="bg-white pt-24 lg:pt-32 pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-          
-         
           <div className="text-left">
             <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
               Manage Your Expense & <br />
