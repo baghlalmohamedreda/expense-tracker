@@ -28,13 +28,18 @@ function LoginForm() {
     const [err,setErr]=useState("")
     function handlesubmit(e){
         e.preventDefault()
+        setErr("")
         if(!email.trim() ){
             setErre("vous dever remplir  le champ d'email")
         }
          if(!password.trim()){
             setErrp("vous devez remplir le champs de password")
+            
 
         }
+          if (!email.trim() || !password.trim()) {
+        return
+    }
         else{
             const exist=users.find(e=>
                 e.email.trim().toLowerCase()===email.trim().toLocaleLowerCase()&&
