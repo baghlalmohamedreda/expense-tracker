@@ -26,7 +26,9 @@ function sidebar() {
         icon:<Settings size={20}/>
     }]
   return (
-    <section className='flex min-h-screen w-64 flex-col border-r border-gray-200 bg-white px-4 py-6 shadow-sm'>
+      <aside className="w-64 min-h-[calc(100vh-80px)] bg-white border-r">
+      
+       <section className='flex min-h-screen w-64 flex-col border-r border-gray-200 bg-white px-4 py-6 shadow-sm'>
         <Image src= '/logo.svg'
                        alt='logo'
                        width={55}
@@ -34,7 +36,7 @@ function sidebar() {
                        className='mx-auto mb-10' />
         <div className='flex flex-col gap-2'>
             {links.map((e)=>{return(
-                <Link className='lex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium
+                <Link className='flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium
                  text-gray-600 transition hover:bg-gray-100
                   hover:text-gray-900' 
                    href={e.href}>
@@ -47,6 +49,9 @@ function sidebar() {
             </div>
             
     </section>
+
+    </aside>
+   
     
   )
 }
