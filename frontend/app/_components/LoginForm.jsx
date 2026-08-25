@@ -3,7 +3,6 @@ import { Button } from "../../components/ui/button"
 import Image from 'next/image'
 import { useState } from "react"
 import { useRouter } from "next/navigation";
-
 function LoginForm() {
     const router=useRouter()
     const users=[{
@@ -20,6 +19,10 @@ function LoginForm() {
             password:"reda1234",
 
         },
+        {
+            email:"safae@gmail.com",
+            password:"1234"
+        },
 ]
     const [email ,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -34,8 +37,6 @@ function LoginForm() {
         }
          if(!password.trim()){
             setErrp("vous devez remplir le champs de password")
-            
-
         }
           if (!email.trim() || !password.trim()) {
         return
@@ -51,10 +52,8 @@ function LoginForm() {
             else{
                 setErr("utilisateur n'exist pas")
             }
-
         }
     }
-
   return (
     <div>
          <Image src='/logo.svg'
@@ -81,6 +80,7 @@ function LoginForm() {
 
                    }}
                            value={email}
+                           placeholder="Email"
                            id="email"
                            type="email"
                            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
@@ -98,6 +98,7 @@ function LoginForm() {
                                 setErrp("")
                    }}
                            value={password}
+                           placeholder="Password"
                            id="password"
                            type="password"
                            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
@@ -113,7 +114,6 @@ function LoginForm() {
              {err &&<span className="mt-1 block text-xs font-medium text-red-500">{err}</span>}
 
             </form>        
-
     </div>
   )
 }

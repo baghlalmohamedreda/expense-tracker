@@ -13,12 +13,10 @@ function Hero() {
               Manage Your Expense & <br />
               <strong className="text-indigo-600">Control</strong> your Money
             </h1>
-
             <p className="mt-4 text-base text-gray-700 sm:text-lg">
                 Track your daily spending, set smart budgets, and achieve your
                  financial goals with ease. Take complete charge of your wallet today.
             </p>
-
             <div className="mt-6 flex gap-4">
               <a onClick={()=>router.push('/login')}
                 className="inline-block rounded border border-indigo-600 bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-indigo-700"
