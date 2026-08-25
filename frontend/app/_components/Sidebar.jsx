@@ -36,7 +36,7 @@ function sidebar() {
                        className='mx-auto mb-10' />
         <div className='flex flex-col gap-2'>
             {links.map((e)=>{return(
-                <Link className='flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium
+                <Link className='flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold
                  text-gray-600 transition hover:bg-gray-100
                   hover:text-gray-900' 
                    href={e.href}>
