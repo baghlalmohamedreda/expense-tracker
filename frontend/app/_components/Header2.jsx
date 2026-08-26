@@ -3,15 +3,15 @@
 import React from "react";
 import { Menu, Search, Bell, ChevronDown } from "lucide-react";
 
-function Header2() {
+function Header2({onIssidebarOpen}) {
   return (
     <header className="h-16 w-full bg-white border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-40">
       
     
       <div className="flex items-center gap-4">
       
-        <button
-          className="p-2 rounded-lg hover:bg-gray-100 transition"
+        <button onClick={onIssidebarOpen}
+          className="p-2 cursor-pointer rounded-lg hover:bg-gray-100 transition"
           aria-label="Open menu"
         >
           <Menu size={22} className="text-gray-600" />

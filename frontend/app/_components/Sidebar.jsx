@@ -7,7 +7,7 @@ LayoutDashboard,
   User,
   Settings
 } from 'lucide-react'
-function sidebar() {
+function sidebar({isSidebarOpen}) {
     const links=[{
         name:"dashboard",
         href:"/dashboard",
@@ -26,7 +26,12 @@ function sidebar() {
         icon:<Settings size={20}/>
     }]
   return (
-      <aside className="w-64 min-h-[calc(100vh-80px)] bg-white border-r">
+      <aside className={`
+    fixed left-0 top-[73px] h-[calc(100vh-73px)] w-80
+    transition-transform duration-300
+    ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+  `}
+>
       
        <section className='flex min-h-screen w-64 flex-col border-r border-gray-200 bg-white px-4 py-6 shadow-sm'>
         <Image src= '/logo.svg'
