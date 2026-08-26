@@ -27,7 +27,7 @@ function sidebar({isSidebarOpen}) {
     }]
   return (
       <aside className={`
-    fixed left-0 top-[73px] h-[calc(100vh-73px)] w-80
+    fixed left-0  h-[calc(100vh-73px)] w-80
     transition-transform duration-300
     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
   `}
@@ -40,8 +40,8 @@ function sidebar({isSidebarOpen}) {
                        height={60}
                        className='mx-auto mb-10' />
         <div className='flex flex-col gap-2'>
-            {links.map((e)=>{return(
-                <Link className='flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold
+            {links.map((e,i)=>{return(
+                <Link key={i} className='flex items-center gap-3 rounded-lg px-4 py-3 text-base font-semibold
                  text-gray-600 transition hover:bg-gray-100
                   hover:text-gray-900' 
                    href={e.href}>
