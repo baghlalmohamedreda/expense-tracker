@@ -1,31 +1,81 @@
 'use client'
-import React from 'react'
+
+import React, { useState } from 'react'
 import Sidebar from '../../_components/Sidebar'
-import Header2 from '../../_components/Header2' 
-import { useState } from 'react'
-function layout({children}) {
-  const [issidebaropen,setIssiderbaropen]=useState(false)
-  function handlesidebar(){
+import Header2 from '../../_components/Header2'
+
+function Layout({ children }) {
+
+  const [issidebaropen, setIssiderbaropen] = useState(false)
+
+  function handlesidebar() {
     setIssiderbaropen(!issidebaropen)
-
   }
+
   return (
-    <section className='min-h-screen bg-gray-50'>
-        <Header2 onIssidebarOpen={handlesidebar}
-         className='h-20 bg-white border-b flex items-center px-6'/>
-        <div className='flex'>
-         
 
-            <Sidebar isSidebarOpen={issidebaropen} />
+    <section className="min-h-screen bg-gray-50 flex flex-col">
 
-                <main className="flex-1 p-6">
-          {children}
+      {/* ================= HEADER ================= */}
+
+      <Header2
+        onIssidebarOpen={handlesidebar}
+      />
+
+
+      {/* ================= CONTENT ================= */}
+
+      <div className="flex flex-1 relative">
+
+
+        {/* ================= OVERLAY ================= */}
+
+        {issidebaropen && (
+
+          <div
+            onClick={() => setIssiderbaropen(false)}
+            className="
+              fixed
+              inset-0
+              z-40
+              bg-slate-900/25
+              backdrop-blur-[2px]
+              transition-opacity
+            "
+          />
+
+        )}
+
+
+        {/* ================= SIDEBAR ================= */}
+
+        <Sidebar
+          isSidebarOpen={issidebaropen}
+        />
+
+
+        {/* ================= MAIN ================= */}
+
+        <main
+          className="
+            flex-1
+            p-6
+            w-full
+          "
+        >
+
+          <div className="max-w-7xl mx-auto">
+
+            {children}
+
+          </div>
+
         </main>
-        </div>
 
-       
+      </div>
+
     </section>
   )
 }
 
-export default layout
+export default Layout
