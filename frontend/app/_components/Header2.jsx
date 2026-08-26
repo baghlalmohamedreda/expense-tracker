@@ -1,9 +1,10 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import React from "react";
-import { Menu, Search, Bell, ChevronDown } from "lucide-react";
+import { Menu, Search, Bell } from "lucide-react";
 
 function Header2({onIssidebarOpen}) {
+  const router=useRouter()
   return (
     <header className="h-16 w-full bg-white border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-40">
       
@@ -16,8 +17,6 @@ function Header2({onIssidebarOpen}) {
         >
           <Menu size={22} className="text-gray-600" />
         </button>
-
-     
         <div>
           <h1 className="text-lg font-semibold text-gray-800">
             Dashboard
@@ -27,19 +26,13 @@ function Header2({onIssidebarOpen}) {
           </p>
         </div>
       </div>
-
-    
       <div className="flex items-center gap-3">
-
-      
         <button
           className="p-2 rounded-lg hover:bg-gray-100 transition"
           aria-label="Search"
         >
           <Search size={20} className="text-gray-500" />
         </button>
-
-       
         <button
           className="relative p-2 rounded-lg hover:bg-gray-100 transition"
           aria-label="Notifications"
@@ -51,28 +44,24 @@ function Header2({onIssidebarOpen}) {
 
        
         <div className="h-8 w-px bg-gray-200 mx-1"></div>
-
-     
-        <button className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-gray-50 transition">
+        <button onClick={()=>router.push("/profile")}
+         className="flex cursor-pointer items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-gray-50 transition">
           
-        
           <div className="w-9 h-9 rounded-full bg-gray-900 text-white flex items-center justify-center font-semibold text-sm">
             RA
           </div>
-
-         
-          <div className="hidden sm:block text-left">
+          <div 
+           className="hidden  sm:block text-left">
             <p className="text-sm font-medium text-gray-800">
               Reda
             </p>
             <p className="text-xs text-gray-400">
               Admin
             </p>
+             
           </div>
-
-          <ChevronDown size={17} className="text-gray-400" />
+        
         </button>
-
       </div>
     </header>
   );

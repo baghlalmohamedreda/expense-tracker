@@ -27,7 +27,7 @@ function sidebar({isSidebarOpen}) {
     }]
   return (
       <aside className={`
-    fixed left-0 top-[73px] h-[calc(100vh-73px)] w-80
+    fixed left-0  h-[calc(100vh-73px)] w-80
     transition-transform duration-300
     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
   `}
