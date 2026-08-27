@@ -15,7 +15,6 @@ function Dashboard() {
         <ExpenseCategory />
       </div>
 
-     
       <RecentTransactions />
     </div>
     

@@ -14,7 +14,6 @@ export default function ExpenseCategory() {
     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-1 flex flex-col justify-between">
       <h3 className="text-lg font-bold text-slate-900 mb-4">Expenses by Category</h3>
 
-      {/* Graphique Donut centré */}
       <div className="w-full h-48 flex items-center justify-center my-2">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -36,13 +35,13 @@ export default function ExpenseCategory() {
         </ResponsiveContainer>
       </div>
 
-      {/* Légende compacte en dessous pour ne pas dépasser du cadre */}
+      
       <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-100">
         {data.map((item, index) => (
           <div key={index} className="flex items-center justify-between bg-slate-50 p-2 rounded-xl">
             <div className="flex items-center space-x-2 truncate mr-2">
               <span 
-                className="w-3 h-3 rounded-full flex-shrink-0" 
+                className="w-3 h-3 rounded-full shrink-0" 
                 style={{ backgroundColor: item.color }}
               ></span>
               <span className="text-xs font-medium text-slate-700 truncate" title={item.name}>
