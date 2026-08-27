@@ -1,19 +1,8 @@
-import pool from "./config/db.js";
+import app from "./app.js";
 import dotenv from 'dotenv'
 dotenv.config()
+const PORT = process.env.PORT || 5000;
 
-async function testconnection(){
-    try{
-        const result = await pool.query("SELECT NOW()")
-        console.log("la conexion est reussit ",result.rows[0].new)
-        
-    }
-    catch(err){
-        console.error(err.message)
-
-    }
-    finally{
-        await pool.end()
-    }
-}
-testconnection()
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
