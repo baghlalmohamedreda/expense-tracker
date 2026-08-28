@@ -17,3 +17,17 @@ export async function findUserByEmail(email){
     )
     return result.rows[0]
 }
+export async function findUser(user){
+    const result=await pool.query("select id,email,password from users where email =$1 ",
+        [user.email]
+    )
+    const userdb=result.rows[0]
+    if(userdb){
+        return await bcrypt.compare(
+            user.password,
+            userdb.password)
+
+    }
+    return null
+
+}

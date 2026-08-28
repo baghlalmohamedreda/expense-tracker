@@ -1,4 +1,4 @@
-import { createUser,findUserByEmail } from "../services/authService.js";
+import { createUser,findUserByEmail,findUser } from "../services/authService.js";
 export async function regesterUser(req,res){
     try{
     const {name,email,password}=req.body
@@ -24,4 +24,16 @@ export async function regesterUser(req,res){
         message:"erreur leur de la creation de user"
     })
 }
+}
+export async function login(req,res){
+    const {email,password}=req.body
+    const user={email,password}
+    const checkpassword=await findUser(user)
+    if(checkpassword){
+        return res.status(200).json({
+            message:"login reussi "
+        })
+    }
+    return res.status(404).json({message :"email ou mot de passe incorrect"})
+
 }

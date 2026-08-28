@@ -1,5 +1,9 @@
-import { regesterUser } from "../controllers/authConotroller";
+import { regesterUser,login } from "../controllers/authConotroller";
 import express from 'express'
 const route=express.Router()
 
-route.get("/",regesterUser)
+route.post("/regester",regesterUser)
+route.post("/login",login)
+
+export default route
+
