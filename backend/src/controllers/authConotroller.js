@@ -1,5 +1,4 @@
-import { createUser } from "../services/authService.js";
-
+import { createUser,findUserByEmail } from "../services/authService.js";
 export async function regesterUser(req,res){
     try{
     const {name,email,password}=req.body
@@ -9,6 +8,12 @@ export async function regesterUser(req,res){
         })
     }
     const userinfo={name,email,password}
+    const isexist=await findUserByEmail(userinfo.email)
+    if(isexist){
+        return res.status(409).json({
+            message:"cette email est deja exist"
+        })
+    }
     const user=await createUser(userinfo)
     res.status(201).json({
         message:"utilisateur cree avec succes",
