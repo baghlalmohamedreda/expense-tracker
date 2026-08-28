@@ -1,9 +1,11 @@
 import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
+import dashboardRoutes from "./routes/dashboardRoutes.js"
 const app=express()
 app.use(express.json())
-app.get("/api/test",(req,res)=>{
-    res.json({message:"api is working"})
-})
+app.use("/api/transactions",dashboardRoutes)
+
+
+
+
+
 export default app
