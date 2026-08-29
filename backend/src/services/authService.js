@@ -1,4 +1,4 @@
-import pool from "../config/db"
+import pool from "../config/db.js"
 import bcrypt from 'bcrypt'
 
 export async function createUser(user){
@@ -23,9 +23,10 @@ export async function findUser(user){
     )
     const userdb=result.rows[0]
     if(userdb){
-        return await bcrypt.compare(
+        const utilisateur= await bcrypt.compare(
             user.password,
             userdb.password)
+            return utilisateur
 
     }
     return null

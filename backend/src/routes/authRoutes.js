@@ -1,4 +1,4 @@
-import { regesterUser,login } from "../controllers/authConotroller";
+import { regesterUser,login } from "../controllers/authConotroller.js";
 import express from 'express'
 const route=express.Router()
 

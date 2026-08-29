@@ -2,7 +2,7 @@ import { getTransactionByUser } from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
-        const user_id=1
+        const user_id=req.userId
         const transaction=await getTransactionByUser(user_id)
         res.json(transaction)
 

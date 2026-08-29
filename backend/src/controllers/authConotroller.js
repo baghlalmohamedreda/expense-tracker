@@ -1,4 +1,7 @@
 import { createUser,findUserByEmail,findUser } from "../services/authService.js";
+import jwt from "jsonwebtoken"
+import dotenv from 'dotenv'
+dotenv.config()
 export async function regesterUser(req,res){
     try{
     const {name,email,password}=req.body
@@ -28,10 +31,12 @@ export async function regesterUser(req,res){
 export async function login(req,res){
     const {email,password}=req.body
     const user={email,password}
-    const checkpassword=await findUser(user)
-    if(checkpassword){
+    const userdb=await findUser(user)
+    if(userdb){
+        const token=jwt.sign({userId:userdb.id},process.env.JWT_SECRET,{expiresIn:"1h"})
         return res.status(200).json({
-            message:"login reussi "
+            message:"login reussi ",
+            token
         })
     }
     return res.status(404).json({message :"email ou mot de passe incorrect"})
