@@ -1,7 +1,8 @@
 import express from "express"
-import { getUserTransaction } from "../controllers/dashboardController.js"
+import { getUserTransaction,setNewTransaction } from "../controllers/dashboardController.js"
 import { authMiddleware } from "../middleware/authMiddleware.js"
 
 const router=express.Router()
 router.get("/",authMiddleware,getUserTransaction)
+router.post("/",authMiddleware,setNewTransaction)
 export default router
