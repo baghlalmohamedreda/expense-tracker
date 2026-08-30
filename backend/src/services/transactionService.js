@@ -62,3 +62,7 @@ export async function deleteTransactions(userId,transactionId){
     return result.rows[0]    
 
 }
+export async function getCategories(){
+    const result=await pool.query("select * from category ")
+    return result.rows
+}

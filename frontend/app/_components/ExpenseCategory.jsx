@@ -9,6 +9,8 @@ export default function ExpenseCategory() {
     { name: "Utilities", value: 15, color: "#f97316" },
     { name: "Entertainment", value: 15, color: "#a855f7" },
   ];
+ 
+
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-1 flex flex-col justify-between">

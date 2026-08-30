@@ -1,4 +1,4 @@
-import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions} from "../services/transactionService.js";
+import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getCategories} from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
@@ -74,6 +74,17 @@ export async function deleteTransaction (req,res){
 
     }catch(error){
         return res.status(500).json({message:error.message})
+    }
+   
+}
+export async function getCategory(req,res) {
+    try{
+         const categories=await getCategories()
+         return res.status(200).json(categories)
+          
+
+    }catch(error){
+        res.status(500).json({message:error.message})
     }
    
 }
