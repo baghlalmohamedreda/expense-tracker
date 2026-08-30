@@ -30,3 +30,27 @@ export async function createTransaction(transaction){
     )
     return result.rows[0]
 }
+export async function updateTransactions(transaction){
+    const result =await pool.query(`update transactions set 
+    category_id = $1,
+    title = $2,
+    amount = $3,
+    type = $4,
+    description = $5,
+    transaction_date = $6
+    where id=$7 and user_id=$8
+    RETURNING *
+        `,
+     [
+      transaction.category_id,
+      transaction.title,
+      transaction.amount,
+      transaction.type,
+      transaction.description,
+      transaction.transaction_date,
+      transaction.transactionId,
+      transaction.userId
+    ])
+       
+      return result.rows[0]
+}

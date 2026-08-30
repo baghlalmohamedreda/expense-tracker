@@ -1,4 +1,4 @@
-import { getTransactionByUser,createTransaction } from "../services/transactionService.js";
+import { getTransactionByUser,createTransaction,updateTransactions } from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
@@ -13,7 +13,7 @@ export async function getUserTransaction(req,res){
         });
     }
 }
-export async function setNewTransaction(req,res){
+export async function addNewTransaction(req,res){
     try{
         const userId=req.userId
         const {category_id, title, amount, type, description, transaction_date}=req.body
@@ -34,4 +34,28 @@ export async function setNewTransaction(req,res){
     }
     
 
+}
+export async function updateTransaction(req,res){
+    try{
+         const userId=req.userId
+         const transactionId=req.params.id
+         const {category_id,title, amount, type, description, transaction_date}=req.body
+         const transaction={userId,transactionId,category_id,title, amount, type, description, transaction_date}
+         const upT=await updateTransactions(transaction)
+         if(upT){
+            return res.status(200).json({
+                message:"update succes",
+                transaction:upT
+            })
+         }
+          if (!upT) {
+      return res.status(404).json({
+        message: "Transaction introuvable"
+      })
+    }
+
+    }catch(error){
+        res.status(500).json({message:error.message})
+    }
+   
 }
