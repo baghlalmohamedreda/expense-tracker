@@ -4,32 +4,14 @@ import Image from 'next/image'
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 function LoginForm() {
+
     const router=useRouter()
-    const users=[{
-        email:"ahmed@gmail.com",
-        password:"ahmed1234",
-         },
-        {
-            email:"mohamed@gmail.com",
-            password:"mohamed12",
-
-        },
-        {
-            email:"reda@gmail.com",
-            password:"reda1234",
-
-        },
-        {
-            email:"safae@gmail.com",
-            password:"1234"
-        },
-]
     const [email ,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [errp,setErrp]=useState("")
     const [erre,setErre]=useState("")
     const [err,setErr]=useState("")
-    function handlesubmit(e){
+    async function handlesubmit(e){
         e.preventDefault()
         setErr("")
         if(!email.trim() ){
@@ -42,15 +24,25 @@ function LoginForm() {
         return
     }
         else{
-            const exist=users.find(e=>
-                e.email.trim().toLowerCase()===email.trim().toLocaleLowerCase()&&
-                e.password.trim()===password.trim())
+            const response=await fetch("http://localhost:5000/api/auth/login",{
+                method:"POST",
+                headers:{
+                    "content-Type":"application/json"
+                },
+                body:
+                    JSON.stringify({email,password })
 
-            if(exist){
+            }
+
+            )
+            const data= await response.json()
+
+            if(response.ok){
+                localStorage.setItem("token",data.token)
                 router.push("/dashboard")
             }
             else{
-                setErr("utilisateur n'exist pas")
+                setErr(data.message)
             }
         }
     }
