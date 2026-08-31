@@ -15,9 +15,9 @@ export async function getUserTransaction(req,res){
 }
 export async function addNewTransaction(req,res){
     try{
-        const userId=req.userId
+        const user_id=req.userId
         const {category_id, title, amount, type, description, transaction_date}=req.body
-        const transaction={userId,category_id, title, amount, type, description, transaction_date}
+        const transaction={user_id,category_id, title, amount, type, description, transaction_date}
         const newTransaction=await createTransaction(transaction)
         if(newTransaction){
            return res.status(201).json({
@@ -28,7 +28,7 @@ export async function addNewTransaction(req,res){
         
 
     }catch(error){
-        console.error(message.error)
+        console.error(error)
         return res.status(500).json({message:"erreur leur de la creation de transaction"})
 
     }

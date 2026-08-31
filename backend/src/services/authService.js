@@ -26,7 +26,9 @@ export async function findUser(user){
         const utilisateur= await bcrypt.compare(
             user.password,
             userdb.password)
-            return utilisateur
+        if(utilisateur){
+            return userdb
+        }    
 
     }
     return null

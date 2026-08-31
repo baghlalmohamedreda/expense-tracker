@@ -9,17 +9,17 @@ export async function getTransactionByUser(userId){
 }
 export async function createTransaction(transaction){
     const result =await pool.query(
-       `insert into transations (user_id,
+       `insert into transactions (user_id,
        category_id,
        title,
        amount,
        type,
-       descreption,
-       transation_date)
+       description,
+       transaction_date)
        values($1,$2,$3,$4,$5,$6,$7)
-       RETURNING id, user_id, category_id, title, amount, type, description, transaction_date
+       RETURNING *
        `,
-       [transaction.userId,
+       [transaction.user_id,
       transaction.category_id,
       transaction.title,
       transaction.amount,

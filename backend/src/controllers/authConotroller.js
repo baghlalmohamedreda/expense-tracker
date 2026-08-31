@@ -32,6 +32,8 @@ export async function login(req,res){
     const {email,password}=req.body
     const user={email,password}
     const userdb=await findUser(user)
+    console.log(userdb)
+    console.log(userdb.id)
     if(userdb){
         const token=jwt.sign({userId:userdb.id},process.env.JWT_SECRET,{expiresIn:"1h"})
         return res.status(200).json({

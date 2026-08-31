@@ -6,6 +6,6 @@ const app=express()
 app.use(express.json())
 app.use("/api/transactions",dashboardRoutes)
 app.use("/api/auth/",authRoutes)
-app.use("/api/categories",categoriesRoutes)
+app.use("/api/transaction",categoriesRoutes)
 
 export default app
