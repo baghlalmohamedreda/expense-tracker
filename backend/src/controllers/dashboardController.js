@@ -79,11 +79,10 @@ export async function deleteTransaction (req,res){
 }
 export async function getCategory(req,res) {
     try{
-        const user_id=req.userId
+         const user_id=req.userId
          const categories=await getExpenseByCategory(user_id)
          return res.status(200).json(categories)
           
-
     }catch(error){
         res.status(500).json({message:error.message})
     }
