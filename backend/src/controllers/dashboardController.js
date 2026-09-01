@@ -1,4 +1,4 @@
-import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getCategories} from "../services/transactionService.js";
+import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getExpenseByCategory} from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
@@ -79,7 +79,8 @@ export async function deleteTransaction (req,res){
 }
 export async function getCategory(req,res) {
     try{
-         const categories=await getCategories()
+        const user_id=req.userId
+         const categories=await getExpenseByCategory(user_id)
          return res.status(200).json(categories)
           
 

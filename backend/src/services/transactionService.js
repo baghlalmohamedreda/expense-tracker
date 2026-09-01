@@ -62,7 +62,11 @@ export async function deleteTransactions(userId,transactionId){
     return result.rows[0]    
 
 }
-export async function getCategories(){
-    const result=await pool.query("select * from category ")
+
+export async function getExpenseByCategory(user_id){
+    const result=await pool.query(`select c.name ,sum(t.amount)as total
+        from transactions t join category c on t.categpry_id=c.id where t.user_id=$1
+        and t.type='expense' group by c.name
+        `,[user_id])
     return result.rows
 }
