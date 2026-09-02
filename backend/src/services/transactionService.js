@@ -80,3 +80,36 @@ export async function getExpenseByCategory(user_id){
         `,[user_id])
     return result.rows
 }
+export async function getStateGrid(user_id) {
+
+  const result = await pool.query(`
+    SELECT
+
+      COALESCE(SUM(CASE 
+        WHEN type = 'income' 
+        AND DATE_TRUNC('month', transaction_date) =
+            DATE_TRUNC('month', CURRENT_DATE)
+        THEN amount
+        ELSE 0
+      END), 0) AS monthly_income,
+
+      COALESCE(SUM(CASE 
+        WHEN type = 'expense' 
+        AND DATE_TRUNC('month', transaction_date) =
+            DATE_TRUNC('month', CURRENT_DATE)
+        THEN amount
+        ELSE 0
+      END), 0) AS monthly_expense,
+
+      COALESCE(SUM(CASE 
+        WHEN type = 'income' THEN amount
+        WHEN type = 'expense' THEN -amount
+        ELSE 0
+      END), 0) AS balance
+
+    FROM transactions
+    WHERE user_id = $1
+  `, [user_id])
+
+  return result.rows[0]
+}

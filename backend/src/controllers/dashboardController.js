@@ -1,4 +1,4 @@
-import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getExpenseByCategory} from "../services/transactionService.js";
+import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getExpenseByCategory,getStateGrid} from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
@@ -26,11 +26,9 @@ export async function addNewTransaction(req,res){
          })
       }
         
-
     }catch(error){
         console.error(error)
         return res.status(500).json({message:"erreur leur de la creation de transaction"})
-
     }
     
 
@@ -87,4 +85,23 @@ export async function getCategory(req,res) {
         res.status(500).json({message:error.message})
     }
    
+}
+export async function getGrid(req, res) {
+
+  try {
+
+    const user_id = req.userId
+
+    const grid = await getStateGrid(user_id)
+
+    return res.status(200).json(grid)
+
+  } catch (error) {
+
+    console.log("ERREUR GET GRID :", error)
+
+    return res.status(500).json({
+      message: "Erreur serveur"
+    })
+  }
 }
