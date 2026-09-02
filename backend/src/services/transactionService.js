@@ -2,7 +2,17 @@ import pool from "../config/db.js";
 
 export async function getTransactionByUser(userId){
     const result= await pool.query(
-        "select *from transactions where user_id=$1",
+        `SELECT
+          transactions.id,
+          transactions.title,
+          transactions.amount,
+          transactions.type,
+          transactions.transaction_date,
+          category.name AS category
+          FROM transactions
+          JOIN category
+          ON transactions.category_id = category.id
+          WHERE transactions.user_id = $1`,
         [userId]
         )
         return result.rows

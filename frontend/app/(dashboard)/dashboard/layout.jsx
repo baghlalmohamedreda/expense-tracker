@@ -5,7 +5,6 @@ import Sidebar from '../../_components/Sidebar'
 import Header2 from '../../_components/Header2'
 
 function Layout({ children }) {
-
   const [issidebaropen, setIssiderbaropen] = useState(false)
 
   function handlesidebar() {
