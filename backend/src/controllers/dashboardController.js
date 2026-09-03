@@ -1,4 +1,4 @@
-import { getTransactionByUser,createTransaction,updateTransactions ,deleteTransactions,getExpenseByCategory,getStateGrid} from "../services/transactionService.js";
+import { getTransactionByUser,createTransaction,updateTransactions,getCashFlow ,deleteTransactions,getExpenseByCategory,getStateGrid} from "../services/transactionService.js";
 
 export async function getUserTransaction(req,res){
     try{
@@ -98,10 +98,27 @@ export async function getGrid(req, res) {
 
   } catch (error) {
 
-    console.log("ERREUR GET GRID :", error)
 
     return res.status(500).json({
       message: "Erreur serveur"
+    })
+  }
+}
+export async function getCashFlowController(req, res) {
+  try {
+    const user_id = req.userId
+
+    const data = await getCashFlow(user_id)
+
+    console.log(data)
+
+    return res.status(200).json(data)
+
+  } catch (e) {
+    console.log("ERREUR CASH FLOW :", e)
+
+    return res.status(500).json({
+      message: e.message
     })
   }
 }

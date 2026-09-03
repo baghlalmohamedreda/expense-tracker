@@ -113,3 +113,35 @@ export async function getStateGrid(user_id) {
 
   return result.rows[0]
 }
+export async function getCashFlow(user_id){
+  const result=await pool.query(`
+    SELECT
+    TO_CHAR(transaction_date, 'Mon') AS month,
+
+    COALESCE(
+        SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END),
+        0
+    ) AS income,
+
+    COALESCE(
+        SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END),
+        0
+    ) AS expenses
+
+FROM transactions
+
+WHERE user_id = $1
+
+GROUP BY
+    EXTRACT(YEAR FROM transaction_date),
+    EXTRACT(MONTH FROM transaction_date),
+    TO_CHAR(transaction_date, 'Mon')
+
+ORDER BY
+    EXTRACT(YEAR FROM transaction_date),
+    EXTRACT(MONTH FROM transaction_date);
+    
+    `,[user_id])
+  return result.rows  
+
+}
