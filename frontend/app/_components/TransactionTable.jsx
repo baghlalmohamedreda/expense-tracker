@@ -1,6 +1,6 @@
 "use client"
 import {useState,useEffect} from "react"
-function TransactionTable({search}) {
+function TransactionTable({search,selectType,selectCategory}) {
   const [transaction,setTransaction]=useState([])
   const [searchtranasction,setSearchtransaction]=useState([])
   useEffect(()=>{
@@ -41,15 +41,27 @@ function TransactionTable({search}) {
  } 
 useEffect(()=>{
   function handleSearch(){
-    const transactionSearch=transaction.filter((e)=>
+    let result=transaction
+    if(search){
+       const result=result.filter((e)=>
       e.title.toLowerCase().includes(search.toLowerCase()))
     setSearchtransaction(transactionSearch)
 
+    }
+    if(selectCategory!=="all"){
+      const result=result.filter((e)=>e.category.toLowerCase()===selectCategory.toLowerCase())
+      setSearchtransaction(transactionSearch)
+
+    }
+    if(selectType!=="all"){
+      const result=result.filter((e)=>e.type.toLowerCase()===selectType.toLowerCase())
+      setSearchtransaction(transactionSearch)
+    }
+
   }
 handleSearch()
-},[search,transaction])
+},[search,transaction,selectCategory,selectType])
 
-    
   return (
     <div
       className="

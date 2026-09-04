@@ -1,6 +1,6 @@
 
 
-export default function TransactionsFilter({setSearch}) {
+export default function TransactionsFilter({setSearch,setSelectCategory,setSelectType}) {
   return (
     <div className="flex items-center justify-between gap-6">
 
@@ -31,57 +31,58 @@ export default function TransactionsFilter({setSearch}) {
       <div className="flex items-center gap-4">
 
         <select
-          className="
-            min-w-37.5
-            cursor-pointer
-            rounded-xl
-            border
-            border-slate-200
-            bg-white
-            px-4 py-3
-            text-sm
-            text-slate-700
-            shadow-sm
-            outline-none
-            transition
-            hover:border-slate-300
-            focus:border-slate-400
-            focus:ring-2
-            focus:ring-slate-100
-          "
-        >
-          <option>All Types</option>
-          <option>Expense</option>
-          <option>Income</option>
-        </select>
+  onChange={(e) => setSelectType(e.target.value)}
+  className="
+    min-w-37.5
+    cursor-pointer
+    rounded-xl
+    border
+    border-slate-200
+    bg-white
+    px-4 py-3
+    text-sm
+    text-slate-700
+    shadow-sm
+    outline-none
+    transition
+    hover:border-slate-300
+    focus:border-slate-400
+    focus:ring-2
+    focus:ring-slate-100
+  "
+>
+  <option value="all">all</option>
+  <option value="expense">Expense</option>
+  <option value="income">Income</option>
+</select>
 
-        <select
-          className="
-            min-w-42.5
-            cursor-pointer
-            rounded-xl
-            border
-            border-slate-200
-            bg-white
-            px-4 py-3
-            text-sm
-            text-slate-700
-            shadow-sm
-            outline-none
-            transition
-            hover:border-slate-300
-            focus:border-slate-400
-            focus:ring-2
-            focus:ring-slate-100
-          "
-        >
-          <option>All Categories</option>
-          <option>Food</option>
-          <option>Transport</option>
-          <option>Shopping</option>
-          <option>Entertainment</option>
-        </select>
-
+<select
+  onChange={(e) => setSelectCategory(e.target.value)}
+  className="
+    min-w-42.5
+    cursor-pointer
+    rounded-xl
+    border
+    border-slate-200
+    bg-white
+    px-4 py-3
+    text-sm
+    text-slate-700
+    shadow-sm
+    outline-none
+    transition
+    hover:border-slate-300
+    focus:border-slate-400
+    focus:ring-2
+    focus:ring-slate-100
+  "
+>
+  <option value="all">all</option>
+  <option value="food">Food</option>
+  <option value="transport">Transport</option>
+  <option value="shopping">Shopping</option>
+  <option value="entertainment">Entertainment</option>
+</select>
       </div>
 
     </div>

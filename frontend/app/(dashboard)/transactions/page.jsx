@@ -6,6 +6,8 @@ import TransactionTable from '../../_components/TransactionTable'
 import { useState } from 'react'
 function Transactions() {
   const [search,setSearch]=useState("")
+  const [selectCategory,setSelectCategory]=useState("all")
+  const [selectType,setSelectType]=useState("all")
 
   return (
     <main className="flex-1 bg-slate-50 min-h-screen">
@@ -15,11 +17,17 @@ function Transactions() {
         <HeaderTransactionsPage />
 
         <div className="mt-6">
-          <TransactionsFilter setSearch={setSearch} />
+          <TransactionsFilter setSearch={setSearch}
+                              setSelectCategory={setSelectCategory}
+                              setSelectTyepe={setSelectType}
+           />
         </div>
 
         <div className="mt-6">
-          <TransactionTable search={search} />
+          <TransactionTable search={search}
+                            selectCategory={selectCategory}
+                            selectType={selectType}
+           />
         </div>
 
       </div>
