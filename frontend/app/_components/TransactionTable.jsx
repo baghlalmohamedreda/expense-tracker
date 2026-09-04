@@ -1,16 +1,47 @@
-
+"use client"
+import {useState,useEffect} from "react"
 function TransactionTable() {
-  const transaction = [
-    {
-      id: 1,
-      title: "Lunch",
-      category: "Food",
-      type: "expense",
-      date: "2026-09-03",
-      amount: 45
-    }
-  ]
+  const [transaction,setTransaction]=useState([])
+  useEffect(()=>{
+    async function getTransactions(){
+        const token=localStorage.getItem("token")
+        const response=await fetch("http://localhost:5000/api/transactions",{
+        method:"GET",
+        headers:{
+          "Authorization": `Bearer ${token}`
 
+        }
+      }
+      )
+      if(response.ok){
+        const data=await response.json()
+        setTransaction(data)
+      }
+
+    }
+    getTransactions()
+
+  },[])
+ async function handleDeleteTransaction(id){
+    const token=localStorage.getItem("token")
+    const response=await fetch(`http://localhost:5000/api/transactions/${id}`,{
+        method:"DELETE",
+        headers:{
+          "Authorization": `Bearer ${token}`
+        }
+      }
+      )
+      if(response.ok){
+        const newData=transaction.filter((e)=>e.id!==id)
+        setTransaction(newData)
+      }
+
+
+
+ } 
+
+
+    
   return (
     <div
       className="
@@ -121,6 +152,7 @@ function TransactionTable() {
 
                  <button
   className="
+    cursor-pointer
     rounded-lg
     border
     border-slate-300
@@ -139,7 +171,9 @@ function TransactionTable() {
 
                  <button
   className="
-    rounded-lg
+  
+  cursor-pointer
+  rounded-lg
     border
     border-red-200
     bg-red-50
@@ -152,6 +186,7 @@ function TransactionTable() {
     hover:bg-red-100
     hover:border-red-300
   "
+  onClick={()=>handleDeleteTransaction(e.id)}
 >
   Delete
 </button>
