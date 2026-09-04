@@ -19,8 +19,8 @@ function Sidebar({ isSidebarOpen }) {
       icon: <LayoutDashboard size={20} />
     },
     {
-      name: "expenses",
-      href: "/expenses",
+      name: "transactions",
+      href: "/transactions",
       icon: <Receipt size={20} />
     },
     {

@@ -1,10 +1,11 @@
 
 
-export default function TransactionsFilter() {
+export default function TransactionsFilter({setSearch}) {
   return (
     <div className="flex items-center justify-between gap-6">
 
       <input
+      onChange={(e)=>setSearch(e.target.value)}
         type="text"
         placeholder="Search transactions..."
         className="

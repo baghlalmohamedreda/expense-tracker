@@ -1,8 +1,12 @@
+"use client"
 import React from 'react'
 import HeaderTransactionsPage from '../../_components/HeaderTransactionsPage'
 import TransactionsFilter from '../../_components/TransactionsFilter'
 import TransactionTable from '../../_components/TransactionTable'
+import { useState } from 'react'
 function Transactions() {
+  const [search,setSearch]=useState("")
+
   return (
     <main className="flex-1 bg-slate-50 min-h-screen">
 
@@ -11,11 +15,11 @@ function Transactions() {
         <HeaderTransactionsPage />
 
         <div className="mt-6">
-          <TransactionsFilter />
+          <TransactionsFilter setSearch={setSearch} />
         </div>
 
         <div className="mt-6">
-          <TransactionTable />
+          <TransactionTable search={search} />
         </div>
 
       </div>

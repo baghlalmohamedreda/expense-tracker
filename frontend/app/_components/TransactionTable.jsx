@@ -1,7 +1,8 @@
 "use client"
 import {useState,useEffect} from "react"
-function TransactionTable() {
+function TransactionTable({search}) {
   const [transaction,setTransaction]=useState([])
+  const [searchtranasction,setSearchtransaction]=useState([])
   useEffect(()=>{
     async function getTransactions(){
         const token=localStorage.getItem("token")
@@ -16,6 +17,7 @@ function TransactionTable() {
       if(response.ok){
         const data=await response.json()
         setTransaction(data)
+        setSearchtransaction(data)
       }
 
     }
@@ -36,10 +38,16 @@ function TransactionTable() {
         setTransaction(newData)
       }
 
-
-
  } 
+useEffect(()=>{
+  function handleSearch(){
+    const transactionSearch=transaction.filter((e)=>
+      e.title.toLowerCase().includes(search.toLowerCase()))
+    setSearchtransaction(transactionSearch)
 
+  }
+handleSearch()
+},[search,transaction])
 
     
   return (
@@ -90,7 +98,7 @@ function TransactionTable() {
 
           <tbody>
 
-            {transaction.map((e) => (
+            {searchtranasction.map((e) => (
 
               <tr
                 key={e.id}
