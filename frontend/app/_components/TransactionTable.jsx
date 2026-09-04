@@ -43,19 +43,19 @@ useEffect(()=>{
   function handleSearch(){
     let result=transaction
     if(search){
-       const result=result.filter((e)=>
+        result=result.filter((e)=>
       e.title.toLowerCase().includes(search.toLowerCase()))
-    setSearchtransaction(transactionSearch)
+    setSearchtransaction(result)
 
     }
     if(selectCategory!=="all"){
-      const result=result.filter((e)=>e.category.toLowerCase()===selectCategory.toLowerCase())
-      setSearchtransaction(transactionSearch)
+     result=result.filter((e)=>e.category.toLowerCase()===selectCategory.toLowerCase())
+      setSearchtransaction(result)
 
     }
     if(selectType!=="all"){
-      const result=result.filter((e)=>e.type.toLowerCase()===selectType.toLowerCase())
-      setSearchtransaction(transactionSearch)
+      result=result.filter((e)=>e.type.toLowerCase()===selectType.toLowerCase())
+      setSearchtransaction(result)
     }
 
   }

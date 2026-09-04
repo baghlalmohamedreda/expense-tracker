@@ -19,7 +19,8 @@ function Transactions() {
         <div className="mt-6">
           <TransactionsFilter setSearch={setSearch}
                               setSelectCategory={setSelectCategory}
-                              setSelectTyepe={setSelectType}
+                              setSelectType={setSelectType}
+                              search={search}
            />
         </div>
 
