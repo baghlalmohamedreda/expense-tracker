@@ -1,7 +1,6 @@
 "use client"
 import {useState,useEffect} from "react"
-function TransactionTable({search,selectType,selectCategory}) {
-  const [transaction,setTransaction]=useState([])
+function TransactionTable({search,selectType,selectCategory,setIsedit,setTransactionid,transaction,setTransaction}) {
   const [searchtranasction,setSearchtransaction]=useState([])
   useEffect(()=>{
     async function getTransactions(){
@@ -45,22 +44,27 @@ useEffect(()=>{
     if(search){
         result=result.filter((e)=>
       e.title.toLowerCase().includes(search.toLowerCase()))
-    setSearchtransaction(result)
+   
 
     }
     if(selectCategory!=="all"){
      result=result.filter((e)=>e.category.toLowerCase()===selectCategory.toLowerCase())
-      setSearchtransaction(result)
+      
 
     }
     if(selectType!=="all"){
       result=result.filter((e)=>e.type.toLowerCase()===selectType.toLowerCase())
-      setSearchtransaction(result)
+      
     }
+    setSearchtransaction(result)
 
   }
 handleSearch()
 },[search,transaction,selectCategory,selectType])
+function handleEdit(id){
+  setIsedit(true)
+  setTransactionid(id)
+}
 
   return (
     <div
@@ -171,6 +175,7 @@ handleSearch()
                   <div className="flex justify-end gap-2">
 
                  <button
+                 onClick={()=>handleEdit(e.id)}
   className="
     cursor-pointer
     rounded-lg
